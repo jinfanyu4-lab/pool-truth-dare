@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f3ea" />
+    <meta name="description" content="四人台球真心话大冒险：自由组队，手动判负，输家角色自动轮换。" />
+    <title>开球！真心话大冒险</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="返回组队页">
+        <span class="brand-ball">8</span>
+        <span>开球！</span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-btn" id="soundToggle" type="button" aria-label="关闭音效" title="开关音效">
+          <span aria-hidden="true">♫</span>
+        </button>
+        <button class="ghost-btn hidden" id="changeTeamsBtn" type="button">↻ 更换组队</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="screen setup-screen active" id="setupScreen" aria-labelledby="setupTitle">
+        <div class="hero-copy">
+          <h1 id="setupTitle">输者服罪</h1>
+        </div>
+
+        <div class="pairing-panel" aria-label="选择组队方案">
+          <div class="panel-heading">
+            <div>
+              <span class="step-no">01</span>
+              <h2>选择你的搭档</h2>
+            </div>
+            <p>每种组合都公平，至少现在是。</p>
+          </div>
+          <div class="pairing-grid" id="pairingGrid"></div>
+          <button class="primary-btn" id="startGameBtn" type="button" disabled>
+            <span>确认组队，准备开球</span><b aria-hidden="true">→</b>
+          </button>
+        </div>
+
+        <div class="setup-decoration" aria-hidden="true">
+          <div class="cue-line"></div>
+          <div class="big-ball"><span>?</span></div>
+          <p>GOOD LUCK<br />HAVE FUN</p>
+        </div>
+      </section>
+
+      <section class="screen game-screen" id="gameScreen" aria-labelledby="gameTitle">
+        <div class="game-intro">
+          <div>
+            <p class="eyebrow"><span></span> MATCH IN PROGRESS</p>
+            <h1 id="gameTitle">这一局，<em>谁输了？</em></h1>
+          </div>
+          <p class="round-label">第 <strong id="roundNumber">1</strong> 局</p>
+        </div>
+
+        <div class="scoreboard" id="scoreboard">
+          <article class="team-card team-a">
+            <div class="team-meta"><span>TEAM A</span><b id="lossA">0 次落败</b></div>
+            <div class="avatars" id="avatarsA"></div>
+            <div class="team-names" id="namesA"></div>
+            <button class="lose-btn" data-team="0" type="button"><span>这队输了</span><b>判负 A 队</b></button>
+          </article>
+
+          <div class="versus" aria-hidden="true"><span>V</span><span>S</span><i></i></div>
+
+          <article class="team-card team-b">
+            <div class="team-meta"><span>TEAM B</span><b id="lossB">0 次落败</b></div>
+            <div class="avatars" id="avatarsB"></div>
+            <div class="team-names" id="namesB"></div>
+            <button class="lose-btn" data-team="1" type="button"><span>这队输了</span><b>判负 B 队</b></button>
+          </article>
+        </div>
+
+        <p class="game-hint">手动选择本局输家 · 同队再次落败时，真心话与大冒险自动对调</p>
+
+        <section class="history-section" aria-labelledby="historyTitle">
+          <div class="history-heading">
+            <h2 id="historyTitle">今晚战报</h2>
+            <button id="resetGameBtn" class="text-btn" type="button">清空记录</button>
+          </div>
+          <div class="empty-history" id="emptyHistory">
+            <span>◎</span>
+            <p>第一场好戏还没开演</p>
+          </div>
+          <ol class="history-list" id="historyList"></ol>
+        </section>
+      </section>
+    </main>
+
+    <div class="draw-overlay" id="drawOverlay" role="dialog" aria-modal="true" aria-labelledby="drawTitle" aria-hidden="true">
+      <button class="close-overlay" id="closeOverlay" type="button" aria-label="关闭">×</button>
+      <div class="draw-stage choosing" id="drawStage">
+        <div class="mode-copy">
+          <p class="eyebrow centered"><span></span> CHOOSE YOUR FATE <span></span></p>
+          <h2>这一局，<em>怎么玩？</em></h2>
+          <p class="mode-lede"><span id="modeTeamName">A 队</span> 已经认输，现在把命运交给题库，或者交给在场的人。</p>
+          <div class="mode-grid">
+            <button class="mode-card bank-mode" data-mode="bank" type="button">
+              <span class="mode-number">01</span>
+              <span class="mode-icon" aria-hidden="true">◎</span>
+              <strong>从题库抽取</strong>
+              <small>随机抽出真心话与大冒险<br />悬念拉满，谁也别赖</small>
+              <b>开始抽取 →</b>
+            </button>
+            <button class="mode-card improvise-mode" data-mode="improvise" type="button">
+              <span class="mode-number">02</span>
+              <span class="mode-icon" aria-hidden="true">✦</span>
+              <strong>临场发挥</strong>
+              <small>角色照常轮换，题目由现场决定<br />灵感多大，尺度就多大</small>
+              <b>现场出题 →</b>
+            </button>
+          </div>
+          <p class="safety-note">不论选择哪种玩法，任何人都可以无理由拒绝或换题。</p>
+        </div>
+
+        <div class="loading-copy">
+          <p class="eyebrow centered"><span></span> FATE IS DECIDING <span></span></p>
+          <h2 id="drawTitle">命运正在走位…</h2>
+          <div class="table-loader" aria-hidden="true">
+            <div class="loader-rail"></div>
+            <div class="rolling-ball">8</div>
+            <div class="pocket p1"></div><div class="pocket p2"></div><div class="pocket p3"></div><div class="pocket p4"></div>
+          </div>
+          <p class="teaser" id="teaserText">擦亮球杆，屏住呼吸</p>
+        </div>
+
+        <div class="result-copy" aria-live="polite">
+          <p class="eyebrow centered"><span></span> THE VERDICT <span></span></p>
+          <h2><span id="losingTeamName">A 队</span>，愿赌服输</h2>
+          <div class="result-grid">
+            <article class="challenge-card dare-card">
+              <div class="card-top"><span>DARE</span><i>大冒险</i></div>
+              <div class="assigned-person"><span class="mini-avatar" id="dareAvatar"></span><b id="darePerson"></b></div>
+              <p id="dareText"></p>
+              <button class="reroll-btn" data-type="dare" type="button">换一条 <span>↻</span></button>
+            </article>
+            <article class="challenge-card truth-card">
+              <div class="card-top"><span>TRUTH</span><i>真心话</i></div>
+              <div class="assigned-person"><span class="mini-avatar" id="truthAvatar"></span><b id="truthPerson"></b></div>
+              <p id="truthText"></p>
+              <button class="reroll-btn" data-type="truth" type="button">换一条 <span>↻</span></button>
+            </article>
+          </div>
+          <button class="primary-btn next-round-btn" id="nextRoundBtn" type="button"><span>完成挑战，下一局</span><b>→</b></button>
+          <p class="safety-note">涉及亲吻、拥抱等身体接触必须双方明确同意；任何人都可以无理由换题。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
