@@ -1,75 +1,89 @@
 const players = ["郁金帆", "邵文浩", "罗洁", "吴仙凤"];
 const pairings = [
-  [[0, 1], [2, 3]],
   [[0, 2], [1, 3]],
   [[0, 3], [1, 2]],
 ];
 
 const truths = [
   "你现在有几个对象或正在暧昧的人？必须说真实数字。",
-  "最近一次接吻是什么时候？当时是谁先主动？",
-  "在场四个人里，谁最接近你的理想型？只能选一个。",
-  "如果今晚必须和一个人约会，你会选谁？准备带 TA 去哪里？",
   "你手机里置顶的人是谁？为什么把 TA 置顶？",
-  "你同时和最多几个人暧昧过？最后是怎么收场的？",
-  "你谈过几次恋爱？哪一任最让你念念不忘？",
-  "在场谁最适合谈恋爱，谁最适合只暧昧？",
-  "你最近一次心动对象的名字里有几个字？",
-  "你有没有喜欢过朋友的对象，或者对象的朋友？",
-  "如果前任现在发来“我想你了”，你会怎么回复？",
-  "你做过最恋爱脑的一件事是什么？",
-  "在场谁主动追你，你最有可能答应？",
-  "你有没有偷偷保存过喜欢的人的照片？现在还在吗？",
-  "你最长的一段暧昧持续了多久？为什么没在一起？",
-  "你更能接受对象查手机，还是和异性单独出去玩？",
-  "说出你谈恋爱时最让人受不了的一个毛病。",
-  "你有过喜欢两个人、不知道选谁的时候吗？",
-  "你最想和在场谁体验一次情侣约会？",
-  "你有没有假装发错消息，只为了找某个人聊天？",
-  "你会和前任复合吗？哪一种情况下会？",
-  "你最容易被哪种身体接触撩到：牵手、拥抱、摸头还是别的？",
-  "在场谁看起来最会谈恋爱？谁最像感情里的笨蛋？",
-  "你有没有对某个人说不喜欢，实际上心里很喜欢？",
-  "如果今晚可以收到一个人的表白，你希望是谁？",
-  "你能接受对象有异性知己吗？你的真实底线是什么？",
-  "最近一个让你反复点进聊天框却没发消息的人是谁？",
-  "你最想删除哪一段感情记忆？",
-  "说一个你曾经用过、但绝不会承认是套路的暧昧操作。",
-  "现在看着搭档的眼睛，用一句话说出你对 TA 的真实感觉。",
+  "最近一个让你把消息删了又重新编辑的人是谁？",
+  "如果在场有一个人突然说喜欢你，你最希望是谁？",
+  "你现在最怕哪一个人翻到你的聊天记录？为什么？",
+  "说出一个你明知道是暧昧，却一直假装没看懂的瞬间。",
+  "如果今晚必须和一个人共享一副耳机走回家，你会选谁？",
+  "你嘴上说不可能，心里却动摇过的人是谁？",
+  "你更想被喜欢的人叫宝宝，还是被 TA 直呼全名？为什么？",
+  "如果把你的感情状态比作一颗台球，现在是进袋、卡袋口，还是还没开球？",
+  "你有没有等过一个人的消息等到睡着？那个人现在还联系吗？",
+  "在场谁最容易让你产生‘再靠近一点也没关系’的想法？",
 ];
 
 const dares = [
-  "涂满口红，在搭档明确同意后亲一下脸颊；不同意则在手背盖一个唇印。",
-  "走到门口，在不打扰他人的前提下大喊三遍：“我好寂寞啊！”",
+  "涂满口红，搭档亲一下搭档的脸颊",
+  "走到门口，在不打扰他人的前提下大喊一遍：“我好寂寞啊！”",
   "和搭档对视 20 秒，谁先移开视线，谁就说：“我刚才害羞了。”",
   "选择一位玩家，模仿偶像剧壁咚姿势合影；双方可以保持一臂距离。",
-  "给最近联系过的一位单身朋友发：“突然想问，你觉得我适合谈恋爱吗？”",
-  "在搭档同意后牵手走一圈；不同意则各牵球杆一端走一圈。",
-  "选一位玩家，认真说出三个你觉得 TA 很有吸引力的地方。",
   "用最深情的语气对搭档说：“我输掉的是球，还是你？”",
-  "让搭档替你拍一张约会软件头像，并现场决定是否合格。",
+  "微信换上情头发朋友圈。",
   "对着门外喊：“有没有人愿意结束我的单身生活？”",
   "选择一位玩家，互相叫对方“宝宝”直到本轮结束。",
-  "给搭档一个十秒拥抱；仅在双方明确同意时进行，否则改为隔空拥抱。",
+  "给搭档一个十秒拥抱",
   "打开通讯录，闭眼滑动后停下；说出你和这个人的关系，但不必联系 TA。",
   "模仿喝醉后给喜欢的人打电话，独自完成一段 20 秒小剧场。",
   "让其他三人替你写一句征友文案，然后大声朗读。",
-  "选择一位玩家，用土味情话把 TA 逗笑，成功前不能放弃。",
-  "给搭档整理衣领或头发；需先询问同意，不同意则改为整理球杆。",
-  "现场表演第一次见对象家长，却把对方爸爸认成前任的场面。",
   "用撒娇语气请求赢家下一局让你一颗球，直到对方说“考虑一下”。",
-  "给在场一位玩家起一个情侣备注，并解释为什么这么起。",
-  "拿球杆当电话，假装正在和同时出现的两个暧昧对象解释误会。",
-  "选一位玩家互拍一张“官宣照”；照片无需发布，可以当场删除。",
+  "选一位玩家互拍一张“官宣照”发朋友圈",
   "站到门口说：“本人感情状态不稳定，欢迎咨询！”然后优雅回来。",
   "和搭档十指相对但不接触，坚持十秒，谁碰到谁先说一句情话。",
-  "用新闻播报腔宣布：“本人与搭档因共同输球，关系进入观察期。”",
-  "让其他三人指定一位玩家，你要用三个词描述和 TA 约会的画面。",
   "假装向白球求婚，台词必须包含：“虽然你总跟别人走。”",
-  "在搭档同意后让 TA 在你脸上画一颗小爱心；不同意则画在纸巾上。",
-  "演出看到暗恋对象和别人牵手后，强装镇定打完一杆的全过程。",
-  "面向搭档完成一段十秒即兴告白，最后必须补一句：“以上纯属游戏，除非你当真。”",
+  "面向搭档完成一段十秒即兴告白",
+  "给搭档起一个只有情侣才会用的昵称，并连续叫三遍。",
+  "把球杆当麦克风，唱一句最像在暗示某个人的情歌。",
+  "选择一位玩家，认真夸 TA 三句；不许出现‘人很好’。",
+  "对搭档说一句只说前半句的情话，让 TA 自己猜后半句。",
+  "拍一张捂脸害羞的照片，配文‘刚刚有人让我心跳漏了一拍’，保留十分钟。",
+  "用播音腔宣布：‘本人今晚正式进入可被追求状态。’",
+  "让搭档在你的手背上写一个字，你要把它解释成暧昧暗号。",
+  "随机指一位玩家，对 TA 说：‘你再这样看我，我就要误会了。’",
+  "模仿收到喜欢的人一句‘睡了吗’之后，从冷静到失控的全过程。",
+  "给一位单身朋友发：‘认真问，你觉得我适合被谁喜欢？’",
+  "用最委屈的语气对赢家说：‘球可以输，你不能不哄我。’",
+  "选一位玩家，和 TA 隔空比心合影，照片是否保存由你决定。",
+  "对着白球说三句分手台词，最后一句必须是‘你自由了’。",
+  "把自己的微信昵称临时改成‘感情咨询中’，保持到下一局结束。",
+  "让搭档替你设计一句暧昧朋友圈文案，你必须大声念出来。",
+  "在不接触的情况下，和搭档摆出最像情侣合照的姿势十秒。",
+  "选一位玩家，问 TA：‘如果我追你，第一关是什么？’",
+  "现场演一段发现暧昧对象把你备注成‘台球搭子’后的反应。",
+  "盯着搭档看十秒，然后说：‘没什么，就是确认一下。’",
+  "拿手机当镜子，练习三遍见到喜欢的人时最自然的表情。",
+  "对门口轻声说：‘我的缘分是不是走错包间了？’",
+  "用三个动作演出‘嘴硬、心动、假装无事发生’，让其他人猜。",
+  "选择一位玩家，让 TA 给你取一个暧昧期专属代号。",
+  "模仿偶像剧主角，在球进袋后回头说：‘这一杆是为你打的。’",
+  "给搭档发一个句号，等 TA 回复后立刻当面解释这是心动暗号。",
+  "把今晚某位玩家设为手机锁屏一分钟；照片由本人同意后选择。",
+  "让其他三人投票选出你最像谁的理想型，你要向当选者鞠躬致意。",
+  "选一位玩家，说一句听起来像告白、实际上完全没说明白的话。",
+  "对搭档伸出手说：‘合作愉快，余生也可以。’双方可选择握手或隔空击掌。",
+  "用五秒钟给自己拍一条征友视频，开头必须是‘本人优点不详’。",
+  "让赢家替你选择一个名字，你要对空气深情喊：‘我等你很久了。’",
+  "模拟被问‘我们现在算什么关系’，给出一个最抽象的回答。",
+  "选一位玩家对视十秒，随后各用一个词形容刚才的气氛。",
+  "把纸巾折成戒指向白球求婚，并邀请搭档担任证婚人。",
+  "对搭档说：‘下一局你保护我，我就考虑给你名分。’",
+  "表演一次误把普通问候理解成表白后，努力装作冷静的样子。",
+  "给最近聊天的人发一个台球表情，并补一句：‘突然想到你。’发送前可由本人决定是否继续。",
+  "选一位玩家，用一句话把‘借我十块钱’说得像在求婚。",
+  "站起来郑重宣布：‘从现在起，我的择偶标准暂时以本桌为准。’",
+  "让搭档指定一个表情，你保持这个表情完成下一次击球。",
+  "用最暧昧的语气念出一句天气预报，至少包含‘今晚’和‘升温’。",
+  "向一颗彩球道歉，因为你刚才只顾着看某个人没有看它。",
+  "选择一位玩家，邀请 TA 共同完成一个只存在三十秒的‘假装情侣’片段；双方同意后开始。",
 ];
+
+const DARE_PROBABILITY = 0.8;
 
 const state = {
   pairingIndex: null,
@@ -144,16 +158,19 @@ function randomItem(items, exclude = "") {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
+function randomType() {
+  return Math.random() < DARE_PROBABILITY ? "dare" : "truth";
+}
+
+function typeLabel(type) {
+  return type === "dare" ? { english: "DARE", chinese: "大冒险" } : { english: "TRUTH", chinese: "真心话" };
+}
+
 function decideLoss(teamIndex) {
   const team = state.teams[teamIndex];
-  const previousLosses = state.losses[teamIndex];
-  const dareIndex = previousLosses % 2;
   state.current = {
     teamIndex,
-    darePerson: team[dareIndex],
-    truthPerson: team[1 - dareIndex],
-    dare: "",
-    truth: "",
+    assignments: team.map(person => ({ person, type: "", text: "" })),
     mode: "",
   };
   openModePicker();
@@ -172,13 +189,20 @@ function openModePicker() {
 function chooseMode(mode) {
   if (!state.current) return;
   state.current.mode = mode;
-  if (mode === "bank") {
-    state.current.dare = randomItem(dares);
-    state.current.truth = randomItem(truths);
-  } else {
-    state.current.dare = "请赢家或现场玩家即兴指定一项大冒险。尺度由你们决定，接受挑战的人拥有最终决定权。";
-    state.current.truth = "请赢家或现场玩家即兴提出一个真心话。可以大胆发问，但回答的人随时可以选择跳过。";
-  }
+  state.current.assignments.forEach((assignment, index) => {
+    assignment.type = randomType();
+    if (mode === "bank") {
+      const source = assignment.type === "dare" ? dares : truths;
+      const previous = index > 0 && state.current.assignments[index - 1].type === assignment.type
+        ? state.current.assignments[index - 1].text
+        : "";
+      assignment.text = randomItem(source, previous);
+    } else {
+      assignment.text = assignment.type === "dare"
+        ? "请赢家或现场玩家即兴指定一项大冒险。尺度由你们决定，接受挑战的人拥有最终决定权。"
+        : "请赢家或现场玩家即兴提出一个真心话。可以大胆发问，但回答的人随时可以选择跳过。";
+    }
+  });
   openDraw();
 }
 
@@ -206,21 +230,29 @@ function openDraw() {
 function fillResult() {
   const c = state.current;
   $("#losingTeamName").textContent = `${c.teamIndex === 0 ? "A" : "B"} 队`;
-  $("#darePerson").textContent = c.darePerson;
-  $("#truthPerson").textContent = c.truthPerson;
-  $("#dareAvatar").textContent = initials(c.darePerson);
-  $("#truthAvatar").textContent = initials(c.truthPerson);
-  $("#dareText").textContent = c.dare;
-  $("#truthText").textContent = c.truth;
+  c.assignments.forEach((assignment, index) => {
+    const label = typeLabel(assignment.type);
+    const card = $(`#challengeCard${index}`);
+    card.classList.toggle("dare-card", assignment.type === "dare");
+    card.classList.toggle("truth-card", assignment.type === "truth");
+    $(`#typeEnglish${index}`).textContent = label.english;
+    $(`#typeChinese${index}`).textContent = label.chinese;
+    $(`#person${index}`).textContent = assignment.person;
+    $(`#avatar${index}`).textContent = initials(assignment.person);
+    $(`#challengeText${index}`).textContent = assignment.text;
+  });
   document.querySelectorAll(".reroll-btn").forEach(button => button.classList.toggle("hidden", c.mode !== "bank"));
 }
 
-function reroll(type) {
+function reroll(index) {
   if (!state.current) return;
-  state.current[type] = randomItem(type === "dare" ? dares : truths, state.current[type]);
-  $(`#${type}Text`).animate([{ opacity: 0, transform: "translateY(7px)" }, { opacity: 1, transform: "none" }], { duration: 280 });
-  $(`#${type}Text`).textContent = state.current[type];
-  ping(type === "dare" ? 480 : 600, .05);
+  const assignment = state.current.assignments[index];
+  const source = assignment.type === "dare" ? dares : truths;
+  assignment.text = randomItem(source, assignment.text);
+  const text = $(`#challengeText${index}`);
+  text.animate([{ opacity: 0, transform: "translateY(7px)" }, { opacity: 1, transform: "none" }], { duration: 280 });
+  text.textContent = assignment.text;
+  ping(assignment.type === "dare" ? 480 : 600, .05);
 }
 
 function completeRound() {
@@ -249,8 +281,7 @@ function renderHistory() {
       <time>R${String(item.round).padStart(2, "0")}</time>
       <span class="history-team">${item.teamIndex === 0 ? "A" : "B"} 队落败</span>
       <div class="history-detail">
-        <span><b>${item.darePerson}</b> · 大冒险</span>
-        <span><b>${item.truthPerson}</b> · 真心话</span>
+        ${item.assignments.map(assignment => `<span><b>${assignment.person}</b> · ${typeLabel(assignment.type).chinese}</span>`).join("")}
         <span>${item.mode === "improvise" ? "临场发挥" : "题库抽取"}</span>
       </div>
     </li>
@@ -284,6 +315,22 @@ function restoreState() {
   try {
     const saved = JSON.parse(localStorage.getItem("poolTruthDareState"));
     if (!saved?.teams?.length) return;
+    const savedSignature = saved.teams.map(team => [...team].sort().join("|")).sort().join("::");
+    const restoredPairingIndex = pairings.findIndex(pairing => {
+      const teams = pairing.map(team => team.map(index => players[index]));
+      const signature = teams.map(team => [...team].sort().join("|")).sort().join("::");
+      return signature === savedSignature;
+    });
+    if (restoredPairingIndex < 0) {
+      localStorage.removeItem("poolTruthDareState");
+      return;
+    }
+    saved.pairingIndex = restoredPairingIndex;
+    if (saved.history?.some(item => !Array.isArray(item.assignments))) {
+      saved.history = [];
+      saved.losses = [0, 0];
+      saved.round = 1;
+    }
     Object.assign(state, saved);
     selectPairing(state.pairingIndex);
     renderGame();
@@ -333,6 +380,6 @@ $("#closeOverlay").addEventListener("click", closeOverlay);
 $("#nextRoundBtn").addEventListener("click", completeRound);
 document.querySelectorAll(".lose-btn").forEach(button => button.addEventListener("click", () => decideLoss(Number(button.dataset.team))));
 document.querySelectorAll(".mode-card").forEach(button => button.addEventListener("click", () => chooseMode(button.dataset.mode)));
-document.querySelectorAll(".reroll-btn").forEach(button => button.addEventListener("click", () => reroll(button.dataset.type)));
+document.querySelectorAll(".reroll-btn").forEach(button => button.addEventListener("click", () => reroll(Number(button.dataset.index))));
 document.addEventListener("keydown", event => { if (event.key === "Escape" && $("#drawOverlay").classList.contains("open")) closeOverlay(); });
 restoreState();

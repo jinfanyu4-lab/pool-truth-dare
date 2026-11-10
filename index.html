@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f6f3ea" />
-    <meta name="description" content="四人台球真心话大冒险：自由组队，手动判负，输家角色自动轮换。" />
+    <meta name="description" content="四人台球真心话大冒险：自由组队，手动判负，两名输家独立抽取，大冒险概率更高。" />
     <title>开球！真心话大冒险</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -80,7 +80,7 @@
           </article>
         </div>
 
-        <p class="game-hint">手动选择本局输家 · 同队再次落败时，真心话与大冒险自动对调</p>
+        <p class="game-hint">两名输家独立抽取 · 大冒险 80% · 真心话 20%</p>
 
         <section class="history-section" aria-labelledby="historyTitle">
           <div class="history-heading">
@@ -108,14 +108,14 @@
               <span class="mode-number">01</span>
               <span class="mode-icon" aria-hidden="true">◎</span>
               <strong>从题库抽取</strong>
-              <small>随机抽出真心话与大冒险<br />悬念拉满，谁也别赖</small>
+              <small>两人独立抽取，各自决定命运<br />大冒险出现概率更高</small>
               <b>开始抽取 →</b>
             </button>
             <button class="mode-card improvise-mode" data-mode="improvise" type="button">
               <span class="mode-number">02</span>
               <span class="mode-icon" aria-hidden="true">✦</span>
               <strong>临场发挥</strong>
-              <small>角色照常轮换，题目由现场决定<br />灵感多大，尺度就多大</small>
+              <small>先独立抽类型，再由现场出题<br />可能两个人都是大冒险</small>
               <b>现场出题 →</b>
             </button>
           </div>
@@ -137,17 +137,17 @@
           <p class="eyebrow centered"><span></span> THE VERDICT <span></span></p>
           <h2><span id="losingTeamName">A 队</span>，愿赌服输</h2>
           <div class="result-grid">
-            <article class="challenge-card dare-card">
-              <div class="card-top"><span>DARE</span><i>大冒险</i></div>
-              <div class="assigned-person"><span class="mini-avatar" id="dareAvatar"></span><b id="darePerson"></b></div>
-              <p id="dareText"></p>
-              <button class="reroll-btn" data-type="dare" type="button">换一条 <span>↻</span></button>
+            <article class="challenge-card dare-card" id="challengeCard0">
+              <div class="card-top"><span id="typeEnglish0">DARE</span><i id="typeChinese0">大冒险</i></div>
+              <div class="assigned-person"><span class="mini-avatar" id="avatar0"></span><b id="person0"></b></div>
+              <p id="challengeText0"></p>
+              <button class="reroll-btn" data-index="0" type="button">换一条 <span>↻</span></button>
             </article>
-            <article class="challenge-card truth-card">
-              <div class="card-top"><span>TRUTH</span><i>真心话</i></div>
-              <div class="assigned-person"><span class="mini-avatar" id="truthAvatar"></span><b id="truthPerson"></b></div>
-              <p id="truthText"></p>
-              <button class="reroll-btn" data-type="truth" type="button">换一条 <span>↻</span></button>
+            <article class="challenge-card truth-card" id="challengeCard1">
+              <div class="card-top"><span id="typeEnglish1">TRUTH</span><i id="typeChinese1">真心话</i></div>
+              <div class="assigned-person"><span class="mini-avatar" id="avatar1"></span><b id="person1"></b></div>
+              <p id="challengeText1"></p>
+              <button class="reroll-btn" data-index="1" type="button">换一条 <span>↻</span></button>
             </article>
           </div>
           <button class="primary-btn next-round-btn" id="nextRoundBtn" type="button"><span>完成挑战，下一局</span><b>→</b></button>
